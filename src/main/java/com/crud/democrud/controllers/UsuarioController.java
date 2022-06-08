@@ -45,4 +45,10 @@ public class UsuarioController {
         }
     }
 
+    @PutMapping(path = "/{id}")
+    public UsuarioModel actualizarUsuarioPorId(@RequestBody UsuarioModel usuario,@PathVariable("id") Long id) {
+        usuario.setId(id);
+        return this.usuarioService.guardarUsuario(usuario);
+    }
+
 }
