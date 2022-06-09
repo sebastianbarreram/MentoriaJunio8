@@ -1,6 +1,10 @@
 package com.crud.democrud.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -14,6 +18,15 @@ public class UsuarioModel {
     private String nombre;
     private String email;
     private Integer prioridad;
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            targetEntity = UsuarioRolModel.class,
+            cascade = CascadeType.REMOVE,
+            mappedBy = "idUsuario"
+    )
+    @JsonManagedReference
+    private List<UsuarioRolModel> usuarioRolModel = new ArrayList<>();
 
     public void setPrioridad(Integer prioridad) {
         this.prioridad = prioridad;

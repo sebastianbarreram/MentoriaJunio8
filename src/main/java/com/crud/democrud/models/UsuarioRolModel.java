@@ -17,14 +17,16 @@ public class UsuarioRolModel {
     @JsonBackReference
     private UsuarioModel idUsuario;
 
+    @Column
     private String rol;
 
     public UsuarioRolModel() {
     }
 
-    public UsuarioRolModel(Long idRol, String rol) {
+    public UsuarioRolModel(Long idRol, String rol,UsuarioModel idUsuario) {
         this.idRol = idRol;
         this.rol = rol;
+        this.idUsuario=idUsuario;
     }
 
     public Long getIdRol() {
